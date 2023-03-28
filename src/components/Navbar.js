@@ -17,8 +17,8 @@ const Navigation = () => {
               Create Recipe
             </Link>
            
-            <Link to="/delete-recipe" className="nav-link">
-              Delete Recipe
+            <Link to="/recipes" className="nav-link">
+              Recipe Lists
             </Link>
             <Link to="/login" className="nav-link">
               Login
