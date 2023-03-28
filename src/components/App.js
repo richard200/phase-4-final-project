@@ -6,6 +6,7 @@ import CreateRecipe from "../Recipe/CreateRecipe";
 import Navigation from "./Navbar";
 import ViewRecipes from "../Recipe/ViewRecipe";
 import UpdateRecipe from "../Recipe/UpdateRecipe";
+import DeleteRecipe from "../Recipe/DeleteRecipe";
 
 
 export default function App(){
@@ -18,7 +19,8 @@ return(
 <Route path ="/login" element ={<Login/>}/>
 <Route path = "/addrecipe" element ={<CreateRecipe/>}/>
 <Route path = "/recipes" element ={<ViewRecipes/>}/>
-<Route path = "/update" elemet = {<UpdateRecipe/>}/>
+<Route path = "/update" element = {<UpdateRecipe/>}/>
+<Route path = "/delete" element = {<DeleteRecipe/>} />
   </Routes>
   
   </BrowserRouter>

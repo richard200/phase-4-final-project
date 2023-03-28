@@ -23,6 +23,9 @@ const Navigation = () => {
             <Link to="/update" className="nav-link">
               Update Recipe
             </Link>
+            <Link to="/delete" className="nav-link">
+              Delete Recipe
+            </Link>
             <Link to="/login" className="nav-link">
               Login
             </Link>
