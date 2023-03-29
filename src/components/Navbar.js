@@ -6,12 +6,12 @@ const Navigation = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="md">
       <Container>
-        <Navbar.Brand href="/">Recipe App</Navbar.Brand>
+        <Navbar.Brand href="/">Home</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Link to="/" className="nav-link">
-              Home
+            <Link to="/about" className="nav-link">
+              About
             </Link>
             <Link to="/addrecipe" className="nav-link">
               Create Recipe
@@ -28,6 +28,9 @@ const Navigation = () => {
             </Link>
             <Link to="/login" className="nav-link">
               Login
+            </Link>
+            <Link to="/signup" className="nav-link">
+              Register
             </Link>
           </Nav>
         </Navbar.Collapse>

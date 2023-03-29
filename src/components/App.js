@@ -7,21 +7,28 @@ import Navigation from "./Navbar";
 import ViewRecipes from "../Recipe/ViewRecipe";
 import UpdateRecipe from "../Recipe/UpdateRecipe";
 import DeleteRecipe from "../Recipe/DeleteRecipe";
-
+import Home from "./Homepage";
+import SignUp from "./signup";
+import About from "./About";
+import Footer from "./Footer";
 
 export default function App(){
-return(
-
-  <BrowserRouter>
-
-  <Navigation/>
-  <Routes>
+  return(
+  
+    <BrowserRouter>
+  
+    <Navigation/>
+    <Routes>
+    <Route path = "/" element={<Home/>}/>
+    <Route path ="/about" element ={<About/>}/>
 <Route path ="/login" element ={<Login/>}/>
 <Route path = "/addrecipe" element ={<CreateRecipe/>}/>
 <Route path = "/recipes" element ={<ViewRecipes/>}/>
 <Route path = "/update" element = {<UpdateRecipe/>}/>
 <Route path = "/delete" element = {<DeleteRecipe/>} />
-  </Routes>
+<Route path = "/signup" element ={<SignUp/>}/>
+<Route path = "/footer" element = {<Footer/>}/>
+</Routes>
   
   </BrowserRouter>
 

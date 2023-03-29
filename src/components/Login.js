@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import './App.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -26,9 +27,9 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <Row className="justify-content-md-center mt-5">
-        <Col xs={12} md={6}>
+    <Container className="login-container">
+      <Row className="justify-content-md-center">
+        <Col xs={12} md={6} className="login-form-container">
           <h2 className="text-center mb-4">Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleLogin}>
@@ -52,10 +53,14 @@ const Login = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className="login-button">
               Log In
             </Button>
           </Form>
+          <div className="register-link-container">
+            <p>Don't have an account?</p>
+            <a href="/signup" className="register-link">Register</a>
+          </div>
         </Col>
       </Row>
     </Container>
