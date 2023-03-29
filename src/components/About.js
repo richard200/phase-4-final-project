@@ -1,10 +1,13 @@
 import React from 'react';
 import Footer from './Footer';
 
+<<<<<<< HEAD
 /* import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom'; */
 
 
+=======
+>>>>>>> 47fb41aa3a5b3e8edfd25f98e33537d52131db85
 
 function Home() {
   return (
@@ -19,8 +22,12 @@ function Home() {
          
     </div>
     <img id="img2" src="https://richie-ngeti.000webhostapp.com/images/recipe.jpeg" alt="Carbon Calculator" />
+<<<<<<< HEAD
 
     <div id="secondDiv">
+=======
+​<div id="secondDiv">
+>>>>>>> 47fb41aa3a5b3e8edfd25f98e33537d52131db85
     <h1>WHAT WE ARE ABOUT</h1>
     <p>We would like to help the people who need a reference inorder for them to make a good meal<br></br>
     Here you are able to register, login and start posting your own recipes that you often use alot<br></br>
