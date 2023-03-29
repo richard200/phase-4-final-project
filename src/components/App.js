@@ -5,8 +5,7 @@ import Login from "./Login";
 import CreateRecipe from "../Recipe/CreateRecipe";
 import Navigation from "./Navbar";
 import RecipeList from "../Recipe/ViewRecipe";
-import UpdateRecipe from "../Recipe/UpdateRecipe";
-import DeleteRecipe from "../Recipe/DeleteRecipe";
+
 import Home from "./Homepage";
 import SignUp from "./signup";
 import About from "./About";
@@ -24,8 +23,7 @@ export default function App(){
 <Route path ="/login" element ={<Login/>}/>
 <Route path = "/addrecipe" element ={<CreateRecipe/>}/>
 <Route path = "/recipes" element ={<RecipeList/>}/>
-<Route path = "/update" element = {<UpdateRecipe/>}/>
-<Route path = "/delete" element = {<DeleteRecipe/>} />
+
 <Route path = "/signup" element ={<SignUp/>}/>
 <Route path = "/footer" element = {<Footer/>}/>
 </Routes>

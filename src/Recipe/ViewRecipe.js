@@ -7,7 +7,7 @@ const RecipeList = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch('/api/recipes');
+        const response = await fetch('https://api.npoint.io/8b51d1550cf190162b1d/recipes');
         const data = await response.json();
         setRecipes(data);
       } catch (error) {
@@ -19,7 +19,7 @@ const RecipeList = () => {
 
   const handleDelete = async (recipeId) => {
     try {
-      const response = await fetch(`/api/recipes/${recipeId}`, {
+      const response = await fetch(`https://api.npoint.io/8b51d1550cf190162b1d/recipes${recipeId}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -34,7 +34,7 @@ const RecipeList = () => {
 
   const handleEdit = (recipeId) => {
     // handle edit functionality
-    console.log(`Editing recipe with id ${recipeId}`);
+    console.log(`https://api.npoint.io/8b51d1550cf190162b1d/recipes${recipeId}`);
   };
 
   return (

@@ -12,7 +12,7 @@ const CreateRecipe = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('/api/recipes', {
+      const response = await fetch('https://api.npoint.io/8b51d1550cf190162b1d/recipes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
