@@ -36,3 +36,192 @@
     transform: rotate(360deg);
   }
 }
+
+input[type=text], select {
+  border-radius: 50px;
+  margin: 10px;
+  background-color: white;
+  padding: 30px;
+  display:inline-block ;
+  margin-top: 20px;
+  width: 700px;
+}
+
+.form{
+  display:inline-block ;
+  margin-top: 20px;
+  width: 800px;
+}
+
+input[type=email], select {
+  border-radius: 50px;
+  margin: 10px;
+  background-color: white;
+  padding: 30px;
+  display:inline-block ;
+  margin-top: 20px;
+  width: 700px;
+}
+
+input[type=password], select {
+  border-radius: 50px;
+  margin: 10px;
+  background-color: white;
+  padding: 30px;
+  display:inline-block ;
+  margin-top: 20px;
+  width: 700px;
+}
+
+
+.signup{
+  margin-top: 100px;
+}
+
+.main{
+  background: linear-gradient(rgba(0, 0, 0, 0.2),
+   rgba(0, 0, 0, 0.2)), url("https://richie-ngeti.000webhostapp.com/images/recipe.jpeg") center/cover no-repeat;
+  min-height: calc(100vh - 16px);
+
+}
+
+.about{
+  text-align: center;
+  color: white;
+
+}
+
+#home{
+  margin-left: 900px;
+}
+
+#logo{
+  display: flex;
+  align-items: flex-start;
+  margin-top: -90px;
+   
+
+}
+
+#img2{
+  margin-left: 1500px;
+  margin-top: -280px;
+}
+
+#intro{
+  margin-left: 50px;
+  font-size: 30px;
+ 
+}
+
+#save{
+  font-size: 50px;
+  margin-left: 20px;
+  margin-top: -380px;
+  
+}
+
+#firstDiv{
+  background: hsla(0, 0%, 100%, 1);
+
+  background: linear-gradient(0deg, hsla(0, 0%, 100%, 1) 0%, hsla(111, 100%, 92%, 1) 100%);
+  
+  background: -moz-linear-gradient(0deg, hsla(0, 0%, 100%, 1) 0%, hsla(111, 100%, 92%, 1) 100%);
+  
+  background: -webkit-linear-gradient(0deg, hsla(0, 0%, 100%, 1) 0%, hsla(111, 100%, 92%, 1) 100%);
+}
+#secondDiv {
+  font-size: 25px;
+  background-color: white;
+  padding-bottom: 35px;
+  padding-top: 25px;
+  margin-top: -50px;
+  background: hsla(0, 0%, 100%, 1);
+
+  background: linear-gradient(0deg, hsla(0, 0%, 100%, 1) 0%, hsla(111, 100%, 92%, 1) 100%);
+  
+  background: -moz-linear-gradient(0deg, hsla(0, 0%, 100%, 1) 0%, hsla(111, 100%, 92%, 1) 100%);
+  
+  background: -webkit-linear-gradient(0deg, hsla(0, 0%, 100%, 1) 0%, hsla(111, 100%, 92%, 1) 100%);
+
+}  
+
+#secondDiv h1, p{
+  margin-left: 50px;
+  margin-top: 25px;
+  
+}
+
+#btn1{
+  width: 100px;
+  height: 100%;
+  user-select: text;
+  padding: 10px;
+  border: 0px;
+  vertical-align: baseline;
+  text-align: center;
+}
+
+#btn2{
+  width: 100px;
+  height: 100%;
+  user-select: text;
+  padding: 10px;
+  border:10px;
+  vertical-align: baseline;
+  text-align: center;
+}
+
+#img3{
+  margin-left: 100px;
+  margin-top: -10px;
+}
+
+#thirdDiv{
+  background: hsla(0, 0%, 100%, 1);
+
+  background: linear-gradient(0deg, hsla(0, 0%, 100%, 1) 0%, hsla(111, 100%, 92%, 1) 100%);
+  
+  background: -moz-linear-gradient(0deg, hsla(0, 0%, 100%, 1) 0%, hsla(111, 100%, 92%, 1) 100%);
+  
+  background: -webkit-linear-gradient(0deg, hsla(0, 0%, 100%, 1) 0%, hsla(111, 100%, 92%, 1) 100%);
+  
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FFFFFF", endColorstr="#DEFFD8", GradientType=1 );
+
+padding-bottom: 100px;
+
+text-align: center;
+}
+
+#fourthDiv{
+  background: hsla(0, 0%, 100%, 1);
+
+  background: linear-gradient(0deg, hsla(0, 0%, 100%, 1) 0%, hsla(111, 100%, 92%, 1) 100%);
+  
+  background: -moz-linear-gradient(0deg, hsla(0, 0%, 100%, 1) 0%, hsla(111, 100%, 92%, 1) 100%);
+  
+  background: -webkit-linear-gradient(0deg, hsla(0, 0%, 100%, 1) 0%, hsla(111, 100%, 92%, 1) 100%);
+  
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FFFFFF", endColorstr="#DEFFD8", GradientType=1 );
+
+padding-bottom: 100px;
+
+text-align: center;
+}
+#howItWorks h1{
+  text-align: center;
+  margin-top: 0px; 
+ 
+
+}
+
+#howItWorks2{
+  text-align: center;
+  margin-top: 40px;
+}
+
+#list1{
+  text-align: center;
+  margin-top: 50px;
+  vertical-align: middle;
+}
