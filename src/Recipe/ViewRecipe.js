@@ -1,39 +1,84 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 
-const ViewRecipes = () => {
+const RecipeList = () => {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
     const fetchRecipes = async () => {
-      const response = await fetch('/api/recipes');
-      const data = await response.json();
-      setRecipes(data);
+      try {
+        const response = await fetch('/api/recipes');
+        const data = await response.json();
+        setRecipes(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchRecipes();
   }, []);
 
+  const handleDelete = async (recipeId) => {
+    try {
+      const response = await fetch(`/api/recipes/${recipeId}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        setRecipes(recipes.filter((recipe) => recipe.id !== recipeId));
+      } else {
+        throw new Error('Failed to delete recipe');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleEdit = (recipeId) => {
+    // handle edit functionality
+    console.log(`Editing recipe with id ${recipeId}`);
+  };
+
   return (
-    <Container>
-      <h1>View Recipes</h1>
-      <Row>
-        {recipes.map(recipe => (
-          <Col key={recipe.id} md={4} sm={6}>
-            <Card className="mb-3">
-              <Card.Img variant="top" src={recipe.image} />
-              <Card.Body>
-                <Card.Title>{recipe.name}</Card.Title>
-                <Card.Text>{recipe.description}</Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <small className="text-muted">{recipe.date}</small>
-              </Card.Footer>
-            </Card>
-          </Col>
+    <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Instructions</th>
+          <th>Ingredients</th>
+          <th>Prep Time</th>
+          <th>Category</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {recipes.map((recipe, index) => (
+          <tr key={recipe.id}>
+            <td>{index + 1}</td>
+            <td>{recipe.title}</td>
+            <td>{recipe.instructions}</td>
+            <td>{recipe.ingredients}</td>
+            <td>{recipe.prep_time}</td>
+            <td>{recipe.category}</td>
+            <td>
+              <Button
+                variant="warning"
+                className="me-2"
+                onClick={() => handleEdit(recipe.id)}
+              >
+                Edit
+              </Button>
+              <Button
+                variant="danger"
+                onClick={() => handleDelete(recipe.id)}
+              >
+                Delete
+              </Button>
+            </td>
+          </tr>
         ))}
-      </Row>
-    </Container>
+      </tbody>
+    </Table>
   );
 };
 
-export default ViewRecipes;
+export default RecipeList;

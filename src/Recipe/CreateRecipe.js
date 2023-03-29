@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 
 const CreateRecipe = () => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState('');
   const [instructions, setInstructions] = useState('');
+  const [ingredients, setIngredients] = useState('');
+  const [prepTime, setPrepTime] = useState('');
+  const [categoryId, setCategoryId] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = async (event) => {
@@ -15,7 +17,13 @@ const CreateRecipe = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, description, instructions })
+        body: JSON.stringify({
+          title,
+          instructions,
+          ingredients,
+          prep_time: prepTime,
+          category_id: categoryId
+        })
       });
       if (!response.ok) {
         throw new Error('Failed to create recipe');
@@ -29,27 +37,17 @@ const CreateRecipe = () => {
   return (
     <Container>
       <Row className="justify-content-md-center mt-5">
-        <Col xs={12} md={6}>
-          <h2 className="text-center mb-4">Create Recipe</h2>
+        <Col xs={12} md={8}>
+          <h2 className="text-center mb-4">Create a Recipe</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicName">
-              <Form.Label>Name</Form.Label>
+            <Form.Group controlId="formBasicTitle">
+              <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter name"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicDescription">
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter description"
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
+                placeholder="Enter title"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
               />
             </Form.Group>
 
@@ -57,11 +55,46 @@ const CreateRecipe = () => {
               <Form.Label>Instructions</Form.Label>
               <Form.Control
                 as="textarea"
+                rows={3}
                 placeholder="Enter instructions"
-                rows={5}
                 value={instructions}
                 onChange={(event) => setInstructions(event.target.value)}
               />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicIngredients">
+              <Form.Label>Ingredients</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Enter ingredients"
+                value={ingredients}
+                onChange={(event) => setIngredients(event.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPrepTime">
+              <Form.Label>Preparation Time (in minutes)</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter preparation time"
+                value={prepTime}
+                onChange={(event) => setPrepTime(event.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicCategoryId">
+              <Form.Label>Category</Form.Label>
+              <Form.Control
+                as="select"
+                value={categoryId}
+                onChange={(event) => setCategoryId(event.target.value)}
+              >
+                <option value="">Select a category</option>
+                <option value="1">Appetizer</option>
+                <option value="2">Main Course</option>
+                <option value="3">Dessert</option>
+              </Form.Control>
             </Form.Group>
 
             <Button variant="primary" type="submit">
