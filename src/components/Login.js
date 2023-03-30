@@ -22,7 +22,7 @@ const Login = () => {
       if (data.token) {
         setShowAlert(true); // show success message
         // you can store the token in local storage or cookies here
-        window.location.href = '/about'; // redirect to home page after successful login
+        window.location.href = '/home'; // redirect to home page after successful login
       }
     } catch (error) {
       console.error(error);

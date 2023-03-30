@@ -7,7 +7,7 @@ import Navigation from "./Navbar";
 import RecipeList from "../Recipe/ViewRecipe";
 
 // import Home from "./Homepage";
-import SignUp from "./signup";
+import Signup from "./signup";
 import About from "./About";
 import Footer from "./Footer";
 
@@ -25,7 +25,7 @@ export default function App(){
 <Route path = "/recipes" element ={<RecipeList/>}/>
 
 
-<Route path = "/signup" element ={<SignUp/>}/>
+<Route path = "/signup" element ={<Signup/>}/>
 <Route path = "/footer" element = {<Footer/>}/>
 </Routes>
   
