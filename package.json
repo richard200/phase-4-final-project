@@ -2,6 +2,7 @@
   "name": "recipe",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -11,17 +12,13 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
-    "react-router-dom": "^5.2.0",
-=======
     "react-router-dom": "^6.9.0",
->>>>>>> 47fb41aa3a5b3e8edfd25f98e33537d52131db85
     "react-scripts": "5.0.1",
     "use-history": "^1.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=4000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

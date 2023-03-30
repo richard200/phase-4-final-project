@@ -3,21 +3,29 @@ import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 // import './Register.css';
 
 const Signup = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState([]);
 
-  const handleRegister = async (event) => {
-    event.preventDefault();
+
+  let handleRegister = async (e) => {
+
+    e.preventDefault();
     try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
+      const response = await fetch('/register', {
+        method: "POST",
+        crossorigin: true,
+        mode: "no-cors",
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, email, password })
-      });
+        body: JSON.stringify({ 
+          username, 
+          email, 
+          password, 
+        }),
+      })
       if (!response.ok) {
         throw new Error('Error registering user');
       }
@@ -26,7 +34,7 @@ const Signup = () => {
       setError(error.message);
     }
   };
-
+  
   return (
     <Container>
       <Row className="justify-content-md-center mt-5">
@@ -39,8 +47,8 @@ const Signup = () => {
               <Form.Control
                 type="text"
                 placeholder="Enter username"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
+               value={username}
+                onChange={ event=> setUsername(event.target.value)} required
               />
             </Form.Group>
 
@@ -49,8 +57,8 @@ const Signup = () => {
               <Form.Control
                 type="email"
                 placeholder="Enter email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
+               value={email}
+                onChange={ event => setEmail(event.target.value)} required
               />
             </Form.Group>
 
@@ -59,8 +67,8 @@ const Signup = () => {
               <Form.Control
                 type="password"
                 placeholder="Password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
+              value={password}
+                onChange={ event => setPassword(event.target.value)} required
               />
             </Form.Group>
 

@@ -22,7 +22,7 @@ const CreateRecipe = () => {
           instructions,
           ingredients,
           prep_time: prepTime,
-          category_id: categoryId
+         
         })
       });
       if (!response.ok) {
@@ -74,6 +74,7 @@ const CreateRecipe = () => {
             </Form.Group>
 
             <Form.Group controlId="formBasicPrepTime">
+            <br></br>
               <Form.Label>Preparation Time (in minutes)</Form.Label>
               <Form.Control
                 type="number"
@@ -84,6 +85,7 @@ const CreateRecipe = () => {
             </Form.Group>
 
             <Form.Group controlId="formBasicCategoryId">
+              <br></br>
               <Form.Label>Category</Form.Label>
               <Form.Control
                 as="select"

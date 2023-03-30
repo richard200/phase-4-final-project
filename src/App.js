@@ -1,26 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-import {  Switch, Route, Routes} from 'react-router-dom';
-import SignUp from './components/Signup';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Home from './components/Home';
-import About from './components/About';
+import React from "react";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
+import "./App.css";
+import Login from "./Login";
+import CreateRecipe from "../Recipe/CreateRecipe";
+import Navigation from "./Navbar";
+import RecipeList from "../Recipe/ViewRecipe";
 
-function App() {
-  return (
+// import Home from "./Homepage";
+import SignUp from "./signup";
+import About from "./About";
+import Footer from "./Footer";
+
+export default function App(){
+  return(
+  
+    <BrowserRouter>
+  
+    <Navigation/>
    
-    <div style={{ 
-    //   backgroundImage: 'url("https://richie-ngeti.000webhostapp.com/images/recipe.jpeg")',
-    //  backgroundSize: 'cover',
-    //  backgroundPosition: ' center',
-    //  height: '400px'
-    }}className="App">
-  {/* <SignUp/> */}
-  {/* <Home/> */}
-  <About/>
-    </div>
- 
-  );
-}
+    <Route path = "/" element={<About/>}/>
+    <Route path ="/about" element ={<About/>}/>
+<Route path ="/login" element ={<Login/>}/>
+<Route path = "/addrecipe" element ={<CreateRecipe/>}/>
+<Route path = "/recipes" element ={<RecipeList/>}/>
 
-export default App;
+
+<Route path = "/signup" element ={<SignUp/>}/>
+<Route path = "/footer" element = {<Footer/>}/>
+
+  
+  </BrowserRouter>
+
+)
+
+}

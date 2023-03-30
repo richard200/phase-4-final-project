@@ -10,8 +10,10 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch('http://localhost:3000/users/login', {
         method: 'POST',
+        crossorigin: true,
+        mode: "no-cors",
         headers: {
           'Content-Type': 'application/json'
         },
@@ -30,7 +32,7 @@ const Login = () => {
     <Container className="login-container">
       <Row className="justify-content-md-center">
         <Col xs={12} md={6} className="login-form-container">
-          <h2 className="text-center mb-4">Log In</h2>
+          <h2 className="text-center mt-5 mb-6">Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleLogin}>
             <Form.Group controlId="formBasicEmail">
@@ -53,14 +55,11 @@ const Login = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit" className="login-button">
+     <Button variant="primary" type="submit" className="login-button">
               Log In
             </Button>
           </Form>
-          <div className="register-link-container">
-            <p>Don't have an account?</p>
-            <a href="/signup" className="register-link">Register</a>
-          </div>
+        
         </Col>
       </Row>
     </Container>

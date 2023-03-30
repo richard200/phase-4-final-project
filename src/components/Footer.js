@@ -1,34 +1,31 @@
 import React from "react";
-<<<<<<< HEAD
-import "../Footer.css";
-=======
 import "./Footer.css";
->>>>>>> 47fb41aa3a5b3e8edfd25f98e33537d52131db85
 
 function Footer() {
   return (
-    <div className="main-footer">
+    <div className="main-footer bg-dark">
       <div className="container">
         <div className="row ">
         <div className="col">
-                <h2>About Us</h2>
-                    <li href="#">Story</li>
-                    <li href="#">Clients</li>
-                    <li href="#">Testimonials</li>
+                <h2>Project Members</h2>
+                    <li href="#">Richard Ngeti</li>
+                    <li href="#">Saviour Khalwale</li>
+                    <li href="#">Richard Okongo</li>
+                    <li href="#">Victor Aketch</li>
                     </div>
                     <div className="col">
                 <h2>Services</h2>
-                    <li href="#">Marketing</li>
-                    <li href="#">Consulting</li>
+                    <li href="#">Backend</li>
+                    <li href="#">Frontend</li>
                     <li href="#">Development</li>
                     <li href="#">Design</li>
                </div>
                <div className="col">
                 <h2>Contact Us</h2>
-                    <li href="#">United States</li>
-                    <li href="#">United Kingdom</li>
-                    <li href="#">Australia</li>
-                    <li href="#">Support</li>
+                    <li href="#">+254 717445 204</li>
+                    <li href="#">+254 790844 918</li>
+                    <li href="#">+254 720120 031</li>
+                    <li href="#">+254 456789 090</li>
                </div>
                <div className="col">
                 <h2>Social</h2>
