@@ -1,85 +1,71 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
-// import './Register.css';
 
-const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState([]);
+function Signup() {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-
-  let handleRegister = async (e) => {
-
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch('/register', {
-        method: "POST",
-        crossorigin: true,
-        mode: "no-cors",
+        method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ 
-          username, 
-          email, 
-          password, 
-        }),
-      })
-      if (!response.ok) {
-        throw new Error('Error registering user');
-      }
-      // handle successful registration
+        body: JSON.stringify({ username, email, password })
+      });
+      const data = await response.json();
+      console.log(data);
+      window.location.href = '/login'; // redirect to login page after successful registration
     } catch (error) {
-      setError(error.message);
+      setErrorMessage(error.message);
     }
   };
-  
+
   return (
-    <Container>
-      <Row className="justify-content-md-center mt-5">
-        <Col xs={12} md={6}>
-          <h2 className="text-center mb-4">Register</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleRegister}>
-            <Form.Group controlId="formBasicUsername">
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter username"
-               value={username}
-                onChange={ event=> setUsername(event.target.value)} required
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-               value={email}
-                onChange={ event => setEmail(event.target.value)} required
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-              value={password}
-                onChange={ event => setPassword(event.target.value)} required
-              />
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-              Register
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+    <div className="container mt-4">
+      <h2 className="mb-4">Create an account</h2>
+      <form onSubmit={handleSubmit}>
+        {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+        <div className="form-group">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">Sign up</button>
+      </form>
+    </div>
   );
-};
+}
 
 export default Signup;

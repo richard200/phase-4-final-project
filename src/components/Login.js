@@ -1,68 +1,82 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
-import './App.css';
+import { Card, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/users/login', {
+      const response = await fetch('/users/login', {
         method: 'POST',
-        crossorigin: true,
-        mode: "no-cors",
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
       });
-      if (!response.ok) {
-        throw new Error('Invalid login credentials');
+      const data = await response.json();
+      console.log(data); // handle server response here
+      if (data.token) {
+        setShowAlert(true); // show success message
+        // you can store the token in local storage or cookies here
+        window.location.href = '/about'; // redirect to home page after successful login
       }
-      // handle successful login
     } catch (error) {
-      setError(error.message);
+      console.error(error);
     }
   };
 
   return (
-    <Container className="login-container">
-      <Row className="justify-content-md-center">
-        <Col xs={12} md={6} className="login-form-container">
-          <h2 className="text-center mt-5 mb-6">Log In</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleLogin}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-              />
-            </Form.Group>
-
-     <Button variant="primary" type="submit" className="login-button">
-              Log In
-            </Button>
-          </Form>
-        
-        </Col>
-      </Row>
-    </Container>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-lg-6 col-md-8">
+          <Card>
+            <div className="card-header">
+              Login
+            </div>
+            <div className="card-body">
+              {showAlert && <Alert color="success">Logged in successfully!</Alert>}
+              <Form onSubmit={handleSubmit}>
+                <FormGroup>
+                  <Label for="email">Username / Email</Label>
+                  <Input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Enter your email or username"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="password">Password</Label>
+                  <Input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </FormGroup>
+                <Button type="submit" color="primary" block>
+                  Login
+                </Button>
+              </Form>
+            </div>
+            <div className="card-footer text-center">
+              <div className="mb-3">Don't have an account?</div>
+              <Link to="/signup" className="btn btn-secondary btn-block">
+                Go to Register
+              </Link>
+            </div>
+          </Card>
+        </div>
+      </div>
+    </div>
   );
 };
 
