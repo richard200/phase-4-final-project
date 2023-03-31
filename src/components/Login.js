@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Card, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
+import { storeToken } from '../utils/auth.ts';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showAlert, setShowAlert] = useState(false);
+  // const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/users/login', {
+      const response = await fetch('/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -19,10 +21,12 @@ const Login = () => {
       });
       const data = await response.json();
       console.log(data); // handle server response here
-      if (data.token) {
+      if (data) {
         setShowAlert(true); // show success message
+      
         // you can store the token in local storage or cookies here
-        window.location.href = '/home'; // redirect to home page after successful login
+        window.location.href = '/addrecipe'; // redirect to home page after successful login
+        
       }
     } catch (error) {
       console.error(error);
@@ -32,7 +36,7 @@ const Login = () => {
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-lg-6 col-md-8">
+        <div className="col-lg-10 col-md-8">
           <Card>
             <div className="card-header">
               Login
@@ -62,14 +66,14 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </FormGroup>
-                <Button type="submit" color="primary" block>
+                <Button type="submit" color="primary" className='btn-log'>
                   Login
                 </Button>
               </Form>
             </div>
             <div className="card-footer text-center">
               <div className="mb-3">Don't have an account?</div>
-              <Link to="/signup" className="btn btn-secondary btn-block">
+              <Link to="/signup" color="secondary">
                 Go to Register
               </Link>
             </div>

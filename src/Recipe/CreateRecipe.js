@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 
+
 const CreateRecipe = () => {
+
+
+  // const navigate = useNavigate();
+  // !isUserLoggedIn() && navigate('/about')
+
   const [title, setTitle] = useState('');
   const [instructions, setInstructions] = useState('');
   const [ingredients, setIngredients] = useState('');
@@ -11,24 +17,27 @@ const CreateRecipe = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+  
     try {
-      const response = await fetch('https://api.npoint.io/8b51d1550cf190162b1d/recipes', {
+      const response = await fetch('/recipes', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          // 'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+         
         },
         body: JSON.stringify({
           title,
           instructions,
           ingredients,
           prep_time: prepTime,
+          categoryId: categoryId,
          
         })
       });
-      if (!response.ok) {
-        throw new Error('Failed to create recipe');
-      }
-      // handle successful recipe creation
+      const data = await response.json();
+      console.log(data);
+  // redirect to login page after successful registration
     } catch (error) {
       setError(error.message);
     }
@@ -93,7 +102,7 @@ const CreateRecipe = () => {
                 onChange={(event) => setCategoryId(event.target.value)}
               >
                 <option value="">Select a category</option>
-                <option value="1">Appetizer</option>
+                <option value="1">1</option>
                 <option value="2">Main Course</option>
                 <option value="3">Dessert</option>
               </Form.Control>

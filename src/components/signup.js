@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 
-function Signup() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+
 function Signup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -14,7 +10,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/users', {
+      const response = await fetch('/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -23,7 +19,7 @@ function Signup() {
       });
       const data = await response.json();
       console.log(data);
-      window.location.href = '/login'; // redirect to login page after successful registration
+      window.location.href = '/login' // redirect to login page after successful registration
     } catch (error) {
       setErrorMessage(error.message);
     }
