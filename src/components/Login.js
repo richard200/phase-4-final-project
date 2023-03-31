@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { Card, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-const Login = () => {
-  const [email, setEmail] = useState('');
+const Login = ({ onLogin }) => {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [showAlert, setShowAlert] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,68 +14,51 @@ const Login = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, password }),
       });
       const data = await response.json();
-      console.log(data); // handle server response here
-      if (data.token) {
-        setShowAlert(true); // show success message
-        // you can store the token in local storage or cookies here
-        window.location.href = '/home'; // redirect to home page after successful login
+      if (response.ok) {
+        setErrorMessage('');
+        setSuccessMessage('Login successful!');
+        onLogin(data.token);
+      } else {
+        setSuccessMessage('');
+        setErrorMessage(data.message);
       }
     } catch (error) {
-      console.error(error);
+      setSuccessMessage('Login successful!');
+    
     }
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-lg-6 col-md-8">
-          <Card>
-            <div className="card-header">
-              Login
-            </div>
-            <div className="card-body">
-              {showAlert && <Alert color="success">Logged in successfully!</Alert>}
-              <Form onSubmit={handleSubmit}>
-                <FormGroup>
-                  <Label for="email">Username / Email</Label>
-                  <Input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Enter your email or username"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label for="password">Password</Label>
-                  <Input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </FormGroup>
-                <Button type="submit" color="primary" block>
-                  Login
-                </Button>
-              </Form>
-            </div>
-            <div className="card-footer text-center">
-              <div className="mb-3">Don't have an account?</div>
-              <Link to="/signup" className="btn btn-secondary btn-block">
-                Go to Register
-              </Link>
-            </div>
-          </Card>
-        </div>
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="username">Username or email:</label>
+        <input
+          type="text"
+          className="form-control"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
       </div>
-    </div>
+      <div className="form-group">
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          className="form-control"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </div>
+      <button type="submit" className="btn btn-primary">Login</button>
+      {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+      {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
+    </form>
   );
 };
 

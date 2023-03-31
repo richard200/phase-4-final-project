@@ -34,9 +34,7 @@ const RecipeList = () => {
 
   const handleEdit = (recipeId) => {
     // handle edit functionality
-    console.log(`https://api.npoint.io/8b51d1550cf190162b1d/recipes${recipeId}`);
-  };
-
+    console.log(`
   return (
     <Table striped bordered hover>
       <thead>
@@ -45,7 +43,9 @@ const RecipeList = () => {
           <th>Title</th>
           <th>Instructions</th>
           <th>Ingredients</th>
-          <th>Prep Time</th>
+          <th>Prep Time</th>https://api.npoint.io/8b51d1550cf190162b1d/recipes${recipeId}`);
+  };
+
           <th>Category</th>
           <th>Actions</th>
         </tr>
