@@ -6,14 +6,45 @@ function ViewRecipes() {
   const [isLoading, setIsLoading] = useState(true);
   const [categories, setCategories] = useState([]);
 
+  const userId = sessionStorage.getItem('userId');
+
   useEffect(() => {
-    fetch('/recipes')
-          .then(response => response.json())
-          .then(data => {
+    fetch('/me')
+
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.recipes)
+        if (data && data.recipes) { // add null check here
             // Filter the recipes to show only those created by the logged-in user
-            const filteredRecipes = data.data.filter(recipe => recipe.user_id === sessionStorage.getItem('userId'));
+            const userId = data.id;
+            const filteredRecipes = data.recipes.filter(recipe => recipe.user_id === userId);
+            console.log(filteredRecipes)
             setRecipes(filteredRecipes);
-          });
+            console.log(data.recipes)
+            
+          }
+        // const userId = data.data.id;
+        // const filteredRecipes = data.recipes.filter(recipe => recipe.user_id === userId);
+        // setRecipes(filteredRecipes);
+    })
+    //   if (data && data.data && Array.isArray(data.data)) {
+    //     // Filter the recipes to show only those created by the logged-in user
+    //     const filteredRecipes = data.data.filter(recipe => recipe.user_id === sessionStorage.getItem('userId'));
+    //     setRecipes(filteredRecipes);
+    //   } else {
+    //     // Handle errors
+    //     console.error('Error: Invalid response format');
+    //   }
+    // })
+    // .catch(error => {
+    //   console.error('Error fetching recipes:', error);
+    // });
+        //   .then(response => response.json())
+        //   .then(data => {
+        //     // Filter the recipes to show only those created by the logged-in user
+        //     const filteredRecipes = data.data.filter(recipe => recipe.user_id === sessionStorage.getItem('userId'));
+        //     setRecipes(filteredRecipes);
+        //   });
     // const fetchRecipes = async () => {
     //   try {
     //     const response = await fetch('/me');
@@ -31,7 +62,7 @@ function ViewRecipes() {
     fetch('/categories')
     .then(response => response.json())
     .then(data => setCategories(data.data));
-    fetchRecipes();
+    // fetchRecipes();
   }, []);
 
 
