@@ -37,7 +37,7 @@
   }
 }
 
-input[type=text], select {
+/* input[type=text], select {
   border-radius: 50px;
   margin: 10px;
   background-color: white;
@@ -46,14 +46,14 @@ input[type=text], select {
   margin-top: 20px;
   width: 700px;
  
-}
+} */
 
-.form{
+/* .form{
   display: block;
   margin-top: 20px;
   width: 800px;
   
-}
+} */
 
 /* .Login{
  width: 100px;
@@ -64,7 +64,7 @@ background-color: red;
 
 } */
 
-input[type=email], select {
+/* input[type=email], select {
   border-radius: 50px;
   margin: 20px;
   background-color: white;
@@ -72,9 +72,9 @@ input[type=email], select {
   display:inline-block ;
   margin-top: 10px;
   width: 700px;
-}
+} */
 
-input[type=password], select {
+/* input[type=password], select {
   border-radius: 50px;
   margin: 10px;
   background-color: white;
@@ -82,7 +82,7 @@ input[type=password], select {
   display:inline-block ;
   margin-top: 20px;
   width: 700px;
-}
+} */
 
 .signup{
   margin-top: 100px;

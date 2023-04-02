@@ -1,65 +1,89 @@
-import { useState } from 'react';
+import React, { useState } from "react";
+import "./Login.css";
 
-const Login = ({ onLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+export default function Login({ setUser }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
+  const [errors, setErrors] = useState("");
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    try {
-      const response = await fetch('/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setErrorMessage('');
-        setSuccessMessage('Login successful!');
-        onLogin(data.token);
-      } else {
-        setSuccessMessage('');
-        setErrorMessage(data.message);
-      }
-    } catch (error) {
-      setSuccessMessage('Login successful!');
-    
+    // fetch returns a Promise, we must await it
+
+    const formData = {
+      email,
+      password,
+    };
+
+    const response = await fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    // response.json() returns a Promise, we must await it
+    const data = await response.json();
+    if (response.ok) {
+      // console.log("User created:", data);
+      setUser(data);
+      setErrors("");
+      window.location = "/about";
+    } else {
+      setErrors(data.error);
     }
-  };
+  }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="username">Username or email:</label>
-        <input
-          type="text"
-          className="form-control"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          className="form-control"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit" className="btn btn-primary">Login</button>
-      {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
-      {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
-    </form>
-  );
-};
+    <div className="Auth-form-container">
+      <form className="Auth-form" onSubmit={(e) => handleSubmit(e)}>
+        <div className="Auth-form-content">
+          <h3 className="Auth-form-title">Log In</h3>
+          <div className="text-center">
+            Not registered yet?{" "}
+            <span className="link-primary">
+              <a href="/signup">signup</a>
+            </span>
+          </div>
+          <div className="form-group mt-3">
+            <label>Email address</label>
+            <input
+              type="email"
+              className="form-control mt-1"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="form-group mt-3">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control mt-1"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="d-grid gap-2 mt-3">
+            <button type="submit" className="btn btn-primary">
+              Login
+            </button>
+          </div>
+          {/* <p className="text-center mt-2">
+            Forgot <a href="#">password?</a>
+          </p> */}
 
-export default Login;
+          {errors != "" ? (
+            <ul style={{ color: "red" }}>
+              <li>{errors}</li>
+            </ul>
+          ) : (
+            ""
+          )}
+        </div>
+      </form>
+    </div>
+  );
+}

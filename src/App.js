@@ -1,36 +1,38 @@
-import React from "react";
-import { BrowserRouter, Route, Routes} from "react-router-dom";
-import "./App.css";
-import Login from "./Login";
-import CreateRecipe from "../Recipe/CreateRecipe";
-import Navigation from "./Navbar";
-import RecipeList from "../Recipe/ViewRecipe";
-
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./components/Navbar";
+import RecipeList from "./Recipe/RecipeList";
+import Login from "./components/Login";
+import { Route, Routes } from "react-router-dom";
 // import Home from "./Homepage";
-import SignUp from "./signup";
-import About from "./About";
-import Footer from "./Footer";
+import Signup from "./components/signup";
+import About from "./components/About";
+//import Footer from "./components/Footer";
+import CreateRecipe from "./Recipe/CreateRecipe";
 
-export default function App(){
-  return(
-  
-    <BrowserRouter>
-  
-    <Navigation/>
-   
-    <Route path = "/" element={<About/>}/>
-    <Route path ="/about" element ={<About/>}/>
-<Route path ="/login" element ={<Login/>}/>
-<Route path = "/addrecipe" element ={<CreateRecipe/>}/>
-<Route path = "/recipes" element ={<RecipeList/>}/>
+export default function App() {
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
-<Route path = "/signup" element ={<SignUp/>}/>
-<Route path = "/footer" element = {<Footer/>}/>
-
-  
-  </BrowserRouter>
-
-)
-
+  return (
+    <div>
+      <Navbar setUser={setUser} user={user} />
+      <Routes>
+      <Route path="/" element={<About user={user} />} />
+      <Route path="/recipe-list" element={<RecipeList />} />
+      <Route path="/sign-up" element={<Signup />} />
+      <Route path="/login" element={<Login setUser={setUser} />} />
+      <Route path="/post-recipe" element={<CreateRecipe user={user}/>} />
+      </Routes>
+      </div>
+    
+  );
 }

@@ -1,72 +1,69 @@
-import React from 'react';
-import { useContext } from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import  AuthContext  from './AuthContext';
+import React from "react";
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink,
+} from "./NavbarElements";
 
-const Navigation = () => {
-  const { isLoggedIn } = useContext(AuthContext);
+const Navbar = ({ setUser, user }) => {
+  function handleLogoutClick() {
+    fetch("/users/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+        window.location = "/login";
+      }
+    });
+  }
 
   return (
-    <Navbar bg="dark" variant="dark" expand="md">
-      <Container>
-        <Navbar.Brand href="/">Home</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-            <Link to="/about" className="nav-link">
-              About
-            </Link>
-            <Link to="/addrecipe" className="nav-link">
-              Create Recipe
-            </Link>
-            <Link to="/recipes" className="nav-link">
-              Recipe Lists
-            </Link>
-            {isLoggedIn ? (
-              <>
-                <Link to="/" className="nav-link">
-                  Profile
-                </Link>
-                <Link to="/" className="nav-link">
-                  Logout
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="nav-link">
-                  Login
-                </Link>
-                <Link to="/signup" className="nav-link">
-                  Register
-                </Link>
-              </>
-            )}
-          </Nav>
-          {/* <Nav className="mr-auto">
-            <Link to="/about" className="nav-link">
-              About
-            </Link>
-            <Link to="/addrecipe" className="nav-link">
-              Create Recipe
-            </Link>
-           
-            <Link to="/recipes" className="nav-link">
-              Recipe Lists
-            </Link>
-            
+    <>
+      <Nav>
+        <Bars />
+        <NavMenu>
+          <NavLink to="/">Home</NavLink>
+          {/* <NavLink to="/recipes">Recipe</NavLink> */}
+          {/* <NavLink to="/contact">Contact Us</NavLink> */}
 
-            <Link to="/login" className="nav-link">
-              Login
-            </Link>
-            <Link to="/signup" className="nav-link">
-              Register
-            </Link>
-          </Nav> */}
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          {user ? (
+            <>
+              <NavLink to="/addrecipe">Create Recipe</NavLink>
+            </>
+          ) : (
+            <></>
+          )}
+        </NavMenu>
+
+        <NavBtn>
+          {user ? (
+            <>
+              <NavBtnLink
+                to="/logout"
+                className="btn btn-primary btn-sm active"
+                onClick={() => handleLogoutClick()}
+              >
+                Logout
+              </NavBtnLink>
+            </>
+          ) : (
+            <>
+              <NavBtnLink to="/login" className="btn btn-primary btn-sm active">
+                Login
+              </NavBtnLink>
+              <NavBtnLink
+                to="/signup"
+                className="btn btn-primary btn-sm active"
+              >
+                Sign Up
+              </NavBtnLink>
+            </>
+          )}
+        </NavBtn>
+      </Nav>
+    </>
   );
 };
 
-export default Navigation;
+export default Navbar;
