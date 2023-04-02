@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import Category from '../components/Category';
 function ViewRecipes() {
-  const [recipes, setRecipes] = useState([]);
+  const [recipess, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categories, setCategories] = useState([]);
 
@@ -17,9 +17,9 @@ function ViewRecipes() {
         if (data && data.recipes) { // add null check here
             // Filter the recipes to show only those created by the logged-in user
             const userId = data.id;
-            const filteredRecipes = data.recipes.filter(recipe => recipe.user_id === userId);
-            console.log(filteredRecipes)
-            setRecipes(filteredRecipes);
+            const filtered = data.recipes.filter(recipe => recipe.user_id === userId);
+            // console.log(filteredRecipes)
+            setRecipes(filtered);
             console.log(data.recipes)
             
           }
@@ -98,7 +98,7 @@ function ViewRecipes() {
     </thead>
     <tbody>
       {
-      Array.isArray(recipes) && recipes.map((recipe, index) => {
+      Array.isArray(recipess) && recipess.map((recipe, index) => {
         console.log(recipe, index);
         return (
                   <tr key={recipe.id}>
@@ -107,7 +107,7 @@ function ViewRecipes() {
                   <td>{recipe.instructions}</td>
                   <td>{recipe.ingredients}</td>
                   <td>{recipe.prep_time}</td>
-                  <Category category={categories.find(category => category.id === recipes.category_id)} />
+                  <Category category={categories.find(category => category.id === recipess.category_id)} />
 
                
                   </tr>
