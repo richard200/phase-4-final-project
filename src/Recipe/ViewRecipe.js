@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
-
+import Category from '../components/Category';
 const RecipeList = () => {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -19,6 +20,10 @@ const RecipeList = () => {
         setIsLoading(false)
       }
     };
+
+    fetch('/categories')
+    .then(response => response.json())
+    .then(data => setCategories(data.data));
     fetchRecipes();
   }, []);
 
@@ -71,7 +76,8 @@ const RecipeList = () => {
                     <td>{recipe.instructions}</td>
                     <td>{recipe.ingredients.split(",")}</td>
                     <td>{recipe.prep_time}</td>
-                    <td>{recipe.category}</td>
+                    <Category category={categories.find(category => category.id === recipe.category_id)} />
+
                     <td>
                       <Button
                         variant="warning"

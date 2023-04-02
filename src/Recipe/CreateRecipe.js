@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 
 
@@ -13,36 +13,97 @@ const CreateRecipe = () => {
   const [ingredients, setIngredients] = useState('');
   const [prepTime, setPrepTime] = useState('');
   const [categoryId, setCategoryId] = useState('');
+
   const [error, setError] = useState('');
+  const [categories, setCategories] = useState([]);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const userId = sessionStorage.getItem('userId');
   
-    try {
-      const response = await fetch('/recipes', {
-        method: 'POST',
-        headers: {
-          // 'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-         
-        },
-        body: JSON.stringify({
-          title,
-          instructions,
-          ingredients,
-          prep_time: prepTime,
-          categoryId: categoryId,
-         
-        })
-      });
-      const data = await response.json();
-      console.log(data);
-  // redirect to login page after successful registration
-    } catch (error) {
-      setError(error.message);
-    }
-  };
+  useEffect(() => {
+    // Fetch categories from the backend API
+    fetch('/categories')
+      .then(response => response.json())
+      .then(data => setCategories(data.data));
+  }, []);
+  
+  const handleSubmit = event => {
+    event.preventDefault();
+   // Check if user is logged in
+   fetch('/check')
+   .then(response => response.json())
+   .then(data => {
+     if (data.isLoggedIn) {
+       // User is logged in, send a POST request to create the new recipe
+       fetch('/recipes', {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({
+           title: title,
+           ingredients: ingredients,
+           instructions: instructions,
+           prep_time: prepTime,
+           category_id: categoryId,
+           user_id: userId
+         })
+       })
+       .then(response => response.json())
+       .then(data => {
+        if (data) {
+          // Display a success message
+          alert('Recipe created successfully!');
+          // Redirect the user to a new page
+        
+        } else {
+          // Handle any errors
+          alert('Error creating recipe. Please try again.');
+        }
+       }
+         // Do something with the response data
+       )
+     } else {
+       // User is not logged in, show an error message
+       setError('Please log in to create a recipe.');
+     }
+   });
 
+
+  // useEffect(() => {
+  //   // Fetch categories from the backend API
+  //   fetch('/categories')
+  //     .then(response => response.json())
+  //     .then(data => setCategories(data.data));
+  // }, []);
+
+  // const handleSubmit = event => {
+  //   event.preventDefault();
+
+  //   // Send a POST request to create the new recipe
+  //   fetch('/recipes', {
+  //     method: 'POST',
+  //     // crossorigin: true,
+  //     // mode: "no-cors",
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       title: title,
+  //       ingredients: ingredients,
+  //       instructions: instructions,
+  //       prepTime: prepTime,
+  //       category_id: categoryId
+        
+  //   })
+  // })
+  //     .then(response => response.json())
+  //     .then(data => (data))
+      
+
+
+  }
+ 
+  // }
   return (
     <Container>
       <Row className="justify-content-md-center mt-5">
@@ -101,10 +162,12 @@ const CreateRecipe = () => {
                 value={categoryId}
                 onChange={(event) => setCategoryId(event.target.value)}
               >
-                <option value="">Select a category</option>
-                <option value="1">1</option>
-                <option value="2">Main Course</option>
-                <option value="3">Dessert</option>
+                 <option value="0">Select a category...</option>
+            {categories.map(category => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
               </Form.Control>
             </Form.Group>
 

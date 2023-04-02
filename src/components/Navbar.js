@@ -23,6 +23,9 @@ const Navigation = () => {
             <Link to="/recipes" className="nav-link">
               Recipe Lists
             </Link>
+            <Link to="/myrecipes" className="nav-link">
+              My Recipes
+            </Link>
             {isLoggedIn ? (
               <>
                 <Link to="/" className="nav-link">

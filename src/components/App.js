@@ -6,6 +6,7 @@ import Login from "./Login";
 import CreateRecipe from "../Recipe/CreateRecipe";
 import Navigation from "./Navbar";
 import RecipeList from "../Recipe/ViewRecipe";
+import MyRecipes from "../Recipe/MyRecipes";
 // import Recipes from "../Recipe/Recipes"
 
 // import Home from "./Homepage";
@@ -38,6 +39,8 @@ export default function App(){
 <Route path ="/login" element ={<Login/>}/>
 <Route path = "/addrecipe" element ={<CreateRecipe/>}/>
 <Route path = "/recipes" element ={<RecipeList/>}/>
+<Route path = "/myrecipes" element ={<MyRecipes/>}/>
+
 
 
 <Route path = "/signup" element ={<Signup/>}/>
