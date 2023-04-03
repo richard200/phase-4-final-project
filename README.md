@@ -22,7 +22,7 @@ These instructions should get you a copy of the project up and running in your l
 
 # Installation 
 1. Clone the repository
-  https://github.com/richard200/phase-4-final-project
+  https://github.com/richard200/phase-4-final-project/tree/development
 
 2. Install the project dependencies
    npm install
