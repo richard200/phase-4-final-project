@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# RECIPE_APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Description
+This project implements a recipe-sharing web application and utilizes a base API built in ruby on rails .
+The application allows users to create an account, post, edit, and delete recipes, view recipes posted by other users and search for recipes by title, category or ingredients.
 
-## Available Scripts
+# Getting Started
+Carefully follow through the Readme to get started.
+These instructions should get you a copy of the project up and running in your local machine for development and testing purposes.
 
-In the project directory, you can run:
+# Features
+* User Authentication: Users can create an account, log in and log out.
+* Post recipes: Users can create a new recipe by filling out a form that includes the recipe title, category, ingredients, instructions, and an image.
+* Edit recipes: Users can edit recipes they have posted by clicking on the edit button and making changes to the recipe.
+* Delete recipes: Users can delete recipes they have posted by clicking on the delete button.
+* View recipes: Users can view all recipes posted by other users and click on a recipe to see more details about it.
+* Search recipes: Users can search for recipes by title, category or ingredients.
 
-### `npm start`
+# Prerequisites
+* Node.js
+* npm or yarn
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Installation 
+1. Clone the repository
+  git@github.com:richard200/phase-4-final-project.git
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Navigate into the project directory
 
-### `npm test`
+   cd  phase-4-final-project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Install the project dependencies
+   npm install
+    or 
+    yarn install
 
-### `npm run build`
+4. To view the app in the browser.
+   npm start
+   or
+   yarn start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Backend
+This application requires a backend api built on Ruby on Rails. You can find the repository for the backend API here: <>. Please follow the instructions in the backend repository's readme file to set up the backend api before running this application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Authors
+ Victor Aketch[aketchgithub]
+ Richard Ngeti[richard200]
+ Richard Okong'o
+ Savior Khalwale
+ 
+# Contributing
+This is an open source project and contributions are welcome. Please follow the steps below to contribute:
 
-### `npm run eject`
+Fork the repository.
+Create a new branch: git checkout -b <branch-name>
+Make your changes and commit them: git commit -am 'Add some feature'
+Push to the branch: git push origin <branch-name>
+Create a pull request.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Licence
+This project is licensed under the MIT License - see the LICENSE file for details.
+ 
