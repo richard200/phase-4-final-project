@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import Category from '../components/Category';
 const RecipeList = () => {
   const [recipes, setRecipes] = useState([]);
