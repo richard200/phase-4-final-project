@@ -22,7 +22,7 @@ These instructions should get you a copy of the project up and running in your l
 
 # Installation 
 1. Clone the repository
-  - [Frontend repository](git@github.com:richard200/backend-final.git)
+  - [Frontend repository](git@github.com:richard200/phase-4-final-project.git)
 
 2. Navigate into the project directory
 
