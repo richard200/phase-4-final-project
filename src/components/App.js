@@ -19,7 +19,7 @@ export default function App(){
   const [loggedIn, setLoggedIn] = useState(true);
 
   function handleLogoutClick() {
-    fetch('https://recipe-backend-gitf.onrender.com/logout', {
+    fetch('https://recipe-project-backend.onrender.com/logout', {
       method: 'DELETE',
     })
     .then(response => {
