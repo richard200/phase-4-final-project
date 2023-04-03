@@ -7,7 +7,8 @@ import { Route, Routes } from "react-router-dom";
 // import Home from "./Homepage";
 import Signup from "./components/signup";
 import About from "./components/About";
-//import Footer from "./components/Footer";
+import ViewRecipes from "./Recipe/MyRecipe";
+
 import CreateRecipe from "./Recipe/CreateRecipe";
 
 export default function App() {
@@ -27,7 +28,8 @@ export default function App() {
       <Navbar setUser={setUser} user={user} />
       <Routes>
       <Route path="/" element={<About user={user} />} />
-      <Route path="/recipe-list" element={<RecipeList />} />
+      <Route path ="/view" element={<ViewRecipes/>} />
+      <Route path="/recipelist" element={<RecipeList />} />
       <Route path="/sign-up" element={<Signup />} />
       <Route path="/login" element={<Login setUser={setUser} />} />
       <Route path="/post-recipe" element={<CreateRecipe user={user}/>} />

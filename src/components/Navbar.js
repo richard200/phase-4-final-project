@@ -10,7 +10,7 @@ import {
 
 const Navbar = ({ setUser, user }) => {
   function handleLogoutClick() {
-    fetch("/users/logout", { method: "DELETE" }).then((r) => {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         setUser(null);
         window.location = "/login";
@@ -24,12 +24,12 @@ const Navbar = ({ setUser, user }) => {
         <Bars />
         <NavMenu>
           <NavLink to="/">Home</NavLink>
-          {/* <NavLink to="/recipes">Recipe</NavLink> */}
-          {/* <NavLink to="/contact">Contact Us</NavLink> */}
+          <NavLink to="/recipelist">All Recipe</NavLink> 
+          
 
           {user ? (
             <>
-              <NavLink to="/addrecipe">Create Recipe</NavLink>
+              <NavLink to="/post-recipe">Create Recipe</NavLink>
             </>
           ) : (
             <></>
@@ -39,6 +39,7 @@ const Navbar = ({ setUser, user }) => {
         <NavBtn>
           {user ? (
             <>
+            <NavLink to="/view">My Recipes</NavLink> 
               <NavBtnLink
                 to="/logout"
                 className="btn btn-primary btn-sm active"
@@ -53,7 +54,7 @@ const Navbar = ({ setUser, user }) => {
                 Login
               </NavBtnLink>
               <NavBtnLink
-                to="/signup"
+                to="/sign-up"
                 className="btn btn-primary btn-sm active"
               >
                 Sign Up

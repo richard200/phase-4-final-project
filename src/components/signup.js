@@ -17,7 +17,7 @@ export default function Signup() {
       username, email, password,
     };
 
-    const response = await fetch("/users", {
+    const response = await fetch("/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export default function Signup() {
     const data = await response.json();
     if (response.ok) {
       // console.log("User created:", data);
-      window.location = '/log-in';
+      window.location = '/login';
     } else {
       setErrors(data.errors);
     }
