@@ -14,9 +14,9 @@ const Navigation = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-            <Link to="/about" className="nav-link">
+            {/* <Link to="/about" className="nav-link">
               About
-            </Link>
+            </Link> */}
             <Link to="/addrecipe" className="nav-link">
               Create Recipe
             </Link>
@@ -26,12 +26,15 @@ const Navigation = () => {
             <Link to="/myrecipes" className="nav-link">
               My Recipes
             </Link>
+            <Link to="/logout" className="nav-link">
+                  Logout
+                </Link>
             {isLoggedIn ? (
               <>
                 <Link to="/" className="nav-link">
                   Profile
                 </Link>
-                <Link to="/" className="nav-link">
+                <Link to="/logout" className="nav-link">
                   Logout
                 </Link>
               </>

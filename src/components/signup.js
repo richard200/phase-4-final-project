@@ -10,7 +10,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://recipe-backend-gitf.onrender.com/register', {
+      const response = await fetch('/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ function Signup() {
       });
       const data = await response.json();
       console.log(data);
-      window.location.href = 'https://recipe-backend-gitf.onrender.com/login' // redirect to login page after successful registration
+      window.location.href = '/login' // redirect to login page after successful registration
     } catch (error) {
       setErrorMessage(error.message);
     }

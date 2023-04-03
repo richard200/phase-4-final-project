@@ -13,13 +13,25 @@ import MyRecipes from "../Recipe/MyRecipes";
 import Signup from "./signup";
 import About from "./About";
 import Footer from "./Footer";
+import LogoutButton from "./Logout";
 
 export default function App(){
-  // const [token, setToken] = useState(null);
-  
-  // const handleLogin = (token) => {
-  //   setToken(token);
-  // };
+  const [loggedIn, setLoggedIn] = useState(true);
+
+  function handleLogoutClick() {
+    fetch('/logout', {
+      method: 'DELETE',
+    })
+    .then(response => {
+      if (response.ok) {
+        sessionStorage.clear();
+        setLoggedIn(false);
+      } else {
+        console.error('Failed to log out');
+      }
+    })
+    .catch(error => console.error(error));
+  }
 
   return(
     <div>
@@ -28,15 +40,24 @@ export default function App(){
   
   
     <Navigation/>
-    {/* {token ? (
-      <CreateRecipe token={token} />
-    ) : (
-      <Login onLogin={handleLogin} />
-    )} */}
+   
+      {loggedIn ? (
+        <div>
+        
+          <LogoutButton onClick={handleLogoutClick} />
+        </div>
+      ) : (
+        <p>You are logged out.</p>,
+        window.location.href = '/'
+        
+      )}
+  
+  
     <Routes>
     <Route path = "/" element={<About/>}/>
-    <Route path ="/about" element ={<About/>}/>
+    {/* <Route path ="/about" element ={<About/>}/> */}
 <Route path ="/login" element ={<Login/>}/>
+{/* <Route path ="/logout" element ={<LogoutButton/>}/> */}
 <Route path = "/addrecipe" element ={<CreateRecipe/>}/>
 <Route path = "/recipes" element ={<RecipeList/>}/>
 <Route path = "/myrecipes" element ={<MyRecipes/>}/>

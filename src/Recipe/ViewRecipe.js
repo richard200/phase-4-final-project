@@ -9,7 +9,7 @@ const RecipeList = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch('https://recipe-backend-gitf.onrender.com/recipes');
+        const response = await fetch('/recipes');
         let data = await response.json();
         // console.log(recipes);
         setRecipes(data.data);
@@ -21,31 +21,31 @@ const RecipeList = () => {
       }
     };
 
-    fetch('https://recipe-backend-gitf.onrender.com/categories')
+    fetch('/categories')
     .then(response => response.json())
     .then(data => setCategories(data.data));
     fetchRecipes();
   }, []);
 
-  const handleDelete = async (recipeId) => {
-    try {
-      const response = await fetch(`https://recipe-backend-gitf.onrender.com/recipes/${recipeId}`, {
-        method: 'DELETE',
-      });
-      if (response.ok) {
-        setRecipes(recipes.filter((recipe) => recipe.id !== recipeId));
-      } else {
-        throw new Error('Failed to delete recipe');
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleDelete = async (recipeId) => {
+  //   try {
+  //     const response = await fetch(`/recipes/${recipeId}`, {
+  //       method: 'DELETE',
+  //     });
+  //     if (response.ok) {
+  //       setRecipes(recipes.filter((recipe) => recipe.id !== recipeId));
+  //     } else {
+  //       throw new Error('Failed to delete recipe');
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const handleEdit = (recipeId) => {
-    // handle edit functionality
-    console.log(`https://recipe-backend-gitf.onrender.com/recipes/${recipeId}`);
-  };
+  // const handleEdit = (recipeId) => {
+  //   // handle edit functionality
+  //   console.log(`/recipes/${recipeId}`);
+  // };
 
 
   if (isLoading) {
@@ -60,9 +60,9 @@ const RecipeList = () => {
           <th>Title</th>
           <th>Instructions</th>
           <th>Ingredients</th>
-          <th>Prep Time</th>
+          <th>Prep Time(In minutes)</th>
           <th>Category</th>
-          <th>Actions</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -78,7 +78,7 @@ const RecipeList = () => {
                     <td>{recipe.prep_time}</td>
                     <Category category={categories.find(category => category.id === recipe.category_id)} />
 
-                    <td>
+                    {/* <td>
                       <Button
                         variant="warning"
                         className="me-2"
@@ -92,7 +92,7 @@ const RecipeList = () => {
                       >
                         Delete
                       </Button>
-                    </td>
+                    </td> */}
                     </tr>
                               )
                             }

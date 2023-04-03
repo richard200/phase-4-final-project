@@ -9,61 +9,96 @@ function ViewRecipes() {
   const userId = sessionStorage.getItem('userId');
 
   useEffect(() => {
-    fetch('https://recipe-backend-gitf.onrender.com/recipes')
+    const fetchRecipes = async () => {
+      try {
+        const response = await fetch('/me');
+        let data = await response.json();
+        // console.log(recipes);
+        setRecipes(data.recipes);
+        console.log(recipes);
+        setIsLoading(false)
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false)
+      }
+    };
 
-    .then(response => response.json())
-    .then(data => {
-        console.log(data.recipes)
-        if (data && data.recipes) { // add null check here
-            // Filter the recipes to show only those created by the logged-in user
-            const userId = data.id;
-            const filtered = data.data.filter(recipe => recipe.user_id === userId);
-            // console.log(filteredRecipes)
-            setRecipes(filtered);
-            console.log(data.recipes)
-            
-          }
-        // const userId = data.data.id;
-        // const filteredRecipes = data.recipes.filter(recipe => recipe.user_id === userId);
-        // setRecipes(filteredRecipes);
-    })
-    //   if (data && data.data && Array.isArray(data.data)) {
-    //     // Filter the recipes to show only those created by the logged-in user
-    //     const filteredRecipes = data.data.filter(recipe => recipe.user_id === sessionStorage.getItem('userId'));
-    //     setRecipes(filteredRecipes);
-    //   } else {
-    //     // Handle errors
-    //     console.error('Error: Invalid response format');
-    //   }
-    // })
-    // .catch(error => {
-    //   console.error('Error fetching recipes:', error);
-    // });
-        //   .then(response => response.json())
-        //   .then(data => {
-        //     // Filter the recipes to show only those created by the logged-in user
-        //     const filteredRecipes = data.data.filter(recipe => recipe.user_id === sessionStorage.getItem('userId'));
-        //     setRecipes(filteredRecipes);
-        //   });
-    // const fetchRecipes = async () => {
-    //   try {
-    //     const response = await fetch('/me');
-    //     let data = await response.json();
-    //     // console.log(recipes);
-    //     setRecipes(data.data);
-    //     console.log(recipes);
-    //     setIsLoading(false)
-    //   } catch (error) {
-    //     console.log(error);
-    //     setIsLoading(false)
-    //   }
-    // };
-
-    fetch('https://recipe-backend-gitf.onrender.com/categories')
+    fetch('/categories')
     .then(response => response.json())
     .then(data => setCategories(data.data));
-    // fetchRecipes();
+    fetchRecipes();
   }, []);
+
+  const handleDelete = async (recipeId) => {
+    try {
+      const response = await fetch(`/recipes/${recipeId}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        setRecipes(recipes.filter((recipe) => recipe.id !== recipeId));
+      } else {
+        throw new Error('Failed to delete recipe');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // useEffect(() => {
+  //   fetch('/me')
+
+  //   .then(response => response.json())
+  //   .then(data => {
+  //       console.log(data.revipes)
+  //       if (data && data.recipes) { // add null check here
+  //           // Filter the recipes to show only those created by the logged-in user
+          
+  //           const filtered = data.recipes.filter(recipe => recipe.user_id === userId);
+  //           // console.log(filteredRecipes)
+  //           setRecipes(filtered);
+  //           console.log(data.recipes)
+            
+  //         }
+  //       // const userId = data.data.id;
+  //       // const filteredRecipes = data.recipes.filter(recipe => recipe.user_id === userId);
+  //       // setRecipes(filteredRecipes);
+  //   })
+  //   //   if (data && data.data && Array.isArray(data.data)) {
+  //   //     // Filter the recipes to show only those created by the logged-in user
+  //   //     const filteredRecipes = data.data.filter(recipe => recipe.user_id === sessionStorage.getItem('userId'));
+  //   //     setRecipes(filteredRecipes);
+  //   //   } else {
+  //   //     // Handle errors
+  //   //     console.error('Error: Invalid response format');
+  //   //   }
+  //   // })
+  //   // .catch(error => {
+  //   //   console.error('Error fetching recipes:', error);
+  //   // });
+  //       //   .then(response => response.json())
+  //       //   .then(data => {
+  //       //     // Filter the recipes to show only those created by the logged-in user
+  //       //     const filteredRecipes = data.data.filter(recipe => recipe.user_id === sessionStorage.getItem('userId'));
+  //       //     setRecipes(filteredRecipes);
+  //       //   });
+  //   // const fetchRecipes = async () => {
+  //   //   try {
+  //   //     const response = await fetch('/me');
+  //   //     let data = await response.json();
+  //   //     // console.log(recipes);
+  //   //     setRecipes(data.data);
+  //   //     console.log(recipes);
+  //   //     setIsLoading(false)
+  //   //   } catch (error) {
+  //   //     console.log(error);
+  //   //     setIsLoading(false)
+  //   //   }
+  //   // };
+
+  //   fetch('/categories')
+  //   .then(response => response.json())
+  //   .then(data => setCategories(data.data));
+  //   // fetchRecipes();
+  // }, []);
 
 
 
@@ -92,7 +127,7 @@ function ViewRecipes() {
         <th>Instructions</th>
         <th>Ingredients</th>
         <th>Prep Time</th>
-        <th>Category</th>
+        {/* <th>Category</th> */}
         <th>Actions</th>
       </tr>
     </thead>
@@ -107,9 +142,17 @@ function ViewRecipes() {
                   <td>{recipe.instructions}</td>
                   <td>{recipe.ingredients.split(",")}</td>
                   <td>{recipe.prep_time}</td>
-                  <Category category={categories.find(category => category.id === recipes.category_id)} />
+                  {/* <Category category={categories.find(category => category.id === recipes.category_id)} /> */}
 
-               
+                  <td>
+                      <Button
+                        variant="danger"
+                        className="me-2"
+                        onClick={() => handleDelete(recipe.id)}
+                      >
+                        Delete
+                      </Button>
+                      </td>
                   </tr>
                             )
                           }

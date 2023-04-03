@@ -21,7 +21,7 @@ const CreateRecipe = () => {
   
   useEffect(() => {
     // Fetch categories from the backend API
-    fetch('https://recipe-backend-gitf.onrender.com/categories')
+    fetch('/categories')
       .then(response => response.json())
       .then(data => setCategories(data.data));
   }, []);
@@ -29,12 +29,12 @@ const CreateRecipe = () => {
   const handleSubmit = event => {
     event.preventDefault();
    // Check if user is logged in
-   fetch('https://recipe-backend-gitf.onrender.com/check')
+   fetch('/check')
    .then(response => response.json())
    .then(data => {
      if (data.isLoggedIn) {
        // User is logged in, send a POST request to create the new recipe
-       fetch('https://recipe-backend-gitf.onrender.com/recipes', {
+       fetch('/recipes', {
          method: 'POST',
          headers: {
            'Content-Type': 'application/json'
@@ -117,7 +117,7 @@ const CreateRecipe = () => {
                 type="text"
                 placeholder="Enter title"
                 value={title}
-                onChange={(event) => setTitle(event.target.value)}
+                onChange={(event) => setTitle(event.target.value)} required
               />
             </Form.Group>
 
@@ -128,7 +128,7 @@ const CreateRecipe = () => {
                 rows={3}
                 placeholder="Enter instructions"
                 value={instructions}
-                onChange={(event) => setInstructions(event.target.value)}
+                onChange={(event) => setInstructions(event.target.value)} required
               />
             </Form.Group>
 
@@ -139,7 +139,7 @@ const CreateRecipe = () => {
                 rows={3}
                 placeholder="Enter ingredients"
                 value={ingredients}
-                onChange={(event) => setIngredients(event.target.value)}
+                onChange={(event) => setIngredients(event.target.value)} required
               />
             </Form.Group>
 
@@ -150,7 +150,7 @@ const CreateRecipe = () => {
                 type="number"
                 placeholder="Enter preparation time"
                 value={prepTime}
-                onChange={(event) => setPrepTime(event.target.value)}
+                onChange={(event) => setPrepTime(event.target.value)} required
               />
             </Form.Group>
 
@@ -160,7 +160,7 @@ const CreateRecipe = () => {
               <Form.Control
                 as="select"
                 value={categoryId}
-                onChange={(event) => setCategoryId(event.target.value)}
+                onChange={(event) => setCategoryId(event.target.value)} required
               >
                  <option value="0">Select a category...</option>
             {categories.map(category => (
