@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import Category from '../components/Category';
 function ViewRecipes() {
-  const [recipess, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categories, setCategories] = useState([]);
 
   const userId = sessionStorage.getItem('userId');
 
   useEffect(() => {
-    fetch('/me')
+    fetch('https://recipe-backend-gitf.onrender.com/recipes')
 
     .then(response => response.json())
     .then(data => {
@@ -17,7 +17,7 @@ function ViewRecipes() {
         if (data && data.recipes) { // add null check here
             // Filter the recipes to show only those created by the logged-in user
             const userId = data.id;
-            const filtered = data.recipes.filter(recipe => recipe.user_id === userId);
+            const filtered = data.data.filter(recipe => recipe.user_id === userId);
             // console.log(filteredRecipes)
             setRecipes(filtered);
             console.log(data.recipes)
@@ -59,7 +59,7 @@ function ViewRecipes() {
     //   }
     // };
 
-    fetch('/categories')
+    fetch('https://recipe-backend-gitf.onrender.com/categories')
     .then(response => response.json())
     .then(data => setCategories(data.data));
     // fetchRecipes();
@@ -98,16 +98,16 @@ function ViewRecipes() {
     </thead>
     <tbody>
       {
-      Array.isArray(recipess) && recipess.map((recipe, index) => {
+      Array.isArray(recipes) && recipes.map((recipe, index) => {
         console.log(recipe, index);
         return (
                   <tr key={recipe.id}>
                   <td>{index + 1}</td>
                   <td>{recipe.title}</td>
                   <td>{recipe.instructions}</td>
-                  <td>{recipe.ingredients}</td>
+                  <td>{recipe.ingredients.split(",")}</td>
                   <td>{recipe.prep_time}</td>
-                  <Category category={categories.find(category => category.id === recipess.category_id)} />
+                  <Category category={categories.find(category => category.id === recipes.category_id)} />
 
                
                   </tr>

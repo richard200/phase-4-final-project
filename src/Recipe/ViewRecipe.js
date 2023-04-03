@@ -9,7 +9,7 @@ const RecipeList = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch('/recipes');
+        const response = await fetch('https://recipe-backend-gitf.onrender.com/recipes');
         let data = await response.json();
         // console.log(recipes);
         setRecipes(data.data);
@@ -21,7 +21,7 @@ const RecipeList = () => {
       }
     };
 
-    fetch('/categories')
+    fetch('https://recipe-backend-gitf.onrender.com/categories')
     .then(response => response.json())
     .then(data => setCategories(data.data));
     fetchRecipes();
@@ -29,7 +29,7 @@ const RecipeList = () => {
 
   const handleDelete = async (recipeId) => {
     try {
-      const response = await fetch(`/recipes/${recipeId}`, {
+      const response = await fetch(`https://recipe-backend-gitf.onrender.com/recipes/${recipeId}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -44,7 +44,7 @@ const RecipeList = () => {
 
   const handleEdit = (recipeId) => {
     // handle edit functionality
-    console.log(`/recipes/${recipeId}`);
+    console.log(`https://recipe-backend-gitf.onrender.com/recipes/${recipeId}`);
   };
 
 

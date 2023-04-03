@@ -21,7 +21,7 @@ const CreateRecipe = () => {
   
   useEffect(() => {
     // Fetch categories from the backend API
-    fetch('/categories')
+    fetch('https://recipe-backend-gitf.onrender.com/categories')
       .then(response => response.json())
       .then(data => setCategories(data.data));
   }, []);
@@ -29,12 +29,12 @@ const CreateRecipe = () => {
   const handleSubmit = event => {
     event.preventDefault();
    // Check if user is logged in
-   fetch('/check')
+   fetch('https://recipe-backend-gitf.onrender.com/check')
    .then(response => response.json())
    .then(data => {
      if (data.isLoggedIn) {
        // User is logged in, send a POST request to create the new recipe
-       fetch('/recipes', {
+       fetch('https://recipe-backend-gitf.onrender.com/recipes', {
          method: 'POST',
          headers: {
            'Content-Type': 'application/json'

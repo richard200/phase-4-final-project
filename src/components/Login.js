@@ -84,7 +84,7 @@ function Login (props ) {
     e.preventDefault();
 
        // Send a POST request to login and create a session
-       fetch('/login', {
+       fetch('https://recipe-backend-gitf.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -104,7 +104,7 @@ function Login (props ) {
       .then(data => {
         if (data.user_id) {
           sessionStorage.setItem('userId', data.user_id);
-          window.location.href = '/addrecipe';
+          window.location.href = 'https://recipe-backend-gitf.onrender.com/addrecipe';
           props.onLogin();
        
         } else {
