@@ -30,16 +30,19 @@ These instructions should get you a copy of the project up and running in your l
 
 3. Install the project dependencies
    npm install
-    or 
-    yarn install
-
+   
 4. To view the app in the browser.
    npm start
-   or
-   yarn start
 
-# Backend
-This application requires a backend api built on Ruby on Rails. You can find the repository for the backend API here: <>. Please follow the instructions in the backend repository's readme file to set up the backend api before running this application.
+# Backend installation
+This application requires a backend api built on Ruby on Rails. You can find the repository for the backend API here: 
+1. Clone the repository
+  git@github.com:richard200/backend-final.git
+  
+2. Bundle install to install the dependencies
+3. Run db:migrate to create the migrations
+4. Run rails s to get the server running
+
 
 
 # Authors
