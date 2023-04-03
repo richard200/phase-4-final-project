@@ -26,17 +26,17 @@ const Navigation = () => {
             <Link to="/myrecipes" className="nav-link">
               My Recipes
             </Link>
-            <Link to="/logout" className="nav-link">
+            {/* <Link to="/logout" className="nav-link">
                   Logout
-                </Link>
+                </Link> */}
             {isLoggedIn ? (
               <>
                 <Link to="/" className="nav-link">
                   Profile
                 </Link>
-                <Link to="/logout" className="nav-link">
+                {/* <Link to="/logout" className="nav-link">
                   Logout
-                </Link>
+                </Link> */}
               </>
             ) : (
               <>

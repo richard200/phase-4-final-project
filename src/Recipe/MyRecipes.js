@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import Category from '../components/Category';
+// import Category from '../components/Category';
 function ViewRecipes() {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
