@@ -21,7 +21,7 @@ These instructions should get you a copy of the project up and running in your l
 * npm or yarn
 
 # Installation 
-1. Clone the repository
+1. Clone the repository(it is in the development branch)
   https://github.com/richard200/phase-4-final-project/tree/development
 
 2. Install the project dependencies
