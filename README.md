@@ -22,7 +22,7 @@ These instructions should get you a copy of the project up and running in your l
 
 # Installation 
 1. Clone the repository
-  git@github.com:richard200/phase-4-final-project.git
+  - [Frontend repository](git@github.com:richard200/backend-final.git)
 
 2. Navigate into the project directory
 
@@ -37,7 +37,7 @@ These instructions should get you a copy of the project up and running in your l
 # Backend installation
 This application requires a backend api built on Ruby on Rails. You can find the repository for the backend API here: 
 1. Clone the repository
-  git@github.com:richard200/backend-final.git
+  - [Backend repository](git@github.com:richard200/backend-final.git)
   
 2. Bundle install to install the dependencies
 3. Run db:migrate to create the migrations
