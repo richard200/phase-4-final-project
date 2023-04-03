@@ -11,7 +11,7 @@ function ViewRecipes() {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch('/me');
+        const response = await fetch('https://recipe-backend-gitf.onrender.com/me');
         let data = await response.json();
         // console.log(recipes);
         setRecipes(data.recipes);
@@ -23,7 +23,7 @@ function ViewRecipes() {
       }
     };
 
-    fetch('/categories')
+    fetch('https://recipe-backend-gitf.onrender.com/categories')
     .then(response => response.json())
     .then(data => setCategories(data.data));
     fetchRecipes();
@@ -31,7 +31,7 @@ function ViewRecipes() {
 
   const handleDelete = async (recipeId) => {
     try {
-      const response = await fetch(`/recipes/${recipeId}`, {
+      const response = await fetch(`https://recipe-backend-gitf.onrender.com/recipes/${recipeId}`, {
         method: 'DELETE',
       });
       if (response.ok) {

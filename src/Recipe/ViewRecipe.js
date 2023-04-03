@@ -9,7 +9,7 @@ const RecipeList = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch('/recipes');
+        const response = await fetch('https://recipe-backend-gitf.onrender.com/recipes');
         let data = await response.json();
         // console.log(recipes);
         setRecipes(data.data);
@@ -21,7 +21,7 @@ const RecipeList = () => {
       }
     };
 
-    fetch('/categories')
+    fetch('https://recipe-backend-gitf.onrender.com/categories')
     .then(response => response.json())
     .then(data => setCategories(data.data));
     fetchRecipes();
