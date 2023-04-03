@@ -22,22 +22,18 @@ These instructions should get you a copy of the project up and running in your l
 
 # Installation 
 1. Clone the repository
-  - [Frontend repository](git@github.com:richard200/phase-4-final-project.git)
+  https://github.com/richard200/phase-4-final-project
 
-2. Navigate into the project directory
-
-   cd  phase-4-final-project
-
-3. Install the project dependencies
+2. Install the project dependencies
    npm install
    
-4. To view the app in the browser.
+3. To view the app in the browser.
    npm start
 
 # Backend installation
 This application requires a backend api built on Ruby on Rails. You can find the repository for the backend API here: 
 1. Clone the repository
-  - [Backend repository](git@github.com:richard200/backend-final.git)
+  https://github.com/richard200/backend-final
   
 2. Bundle install to install the dependencies
 3. Run db:migrate to create the migrations
