@@ -27,25 +27,7 @@ const RecipeList = () => {
     fetchRecipes();
   }, []);
 
-  // const handleDelete = async (recipeId) => {
-  //   try {
-  //     const response = await fetch(`/recipes/${recipeId}`, {
-  //       method: 'DELETE',
-  //     });
-  //     if (response.ok) {
-  //       setRecipes(recipes.filter((recipe) => recipe.id !== recipeId));
-  //     } else {
-  //       throw new Error('Failed to delete recipe');
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
-  // const handleEdit = (recipeId) => {
-  //   // handle edit functionality
-  //   console.log(`/recipes/${recipeId}`);
-  // };
 
 
   if (isLoading) {
@@ -78,21 +60,6 @@ const RecipeList = () => {
                     <td>{recipe.prep_time}</td>
                     <Category category={categories.find(category => category.id === recipe.category_id)} />
 
-                    {/* <td>
-                      <Button
-                        variant="warning"
-                        className="me-2"
-                        onClick={() => handleEdit(recipe.id)}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        variant="danger"
-                        onClick={() => handleDelete(recipe.id)}
-                      >
-                        Delete
-                      </Button>
-                    </td> */}
                     </tr>
                               )
                             }
