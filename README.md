@@ -26,18 +26,19 @@ These instructions should get you a copy of the project up and running in your l
   
 2. cd into the directory
 
-3. Install the project dependencies
+3. git checkout development so that you can get into the development branch where the work is
+
+4. Install the project dependencies
    npm install
    
-4. To view the app in the browser.
+5. To view the app in the browser.
    npm start
 
 # Backend installation
 This application requires a backend api built on Ruby on Rails. You can find the repository for the backend API here: 
 1. Clone the repository
   https://github.com/richard200/backend-final
-2. cd into the directory
-  
+2. cd into the directory 
 3. Bundle install to install the dependencies
 4. Run db:migrate to create the migrations
 5. Run rails s to get the server running
